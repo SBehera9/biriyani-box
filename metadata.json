@@ -1,0 +1,5 @@
+{
+  "name": "Biriyani Box",
+  "description": "Digital ordering website for Biriyani Box with WhatsApp integration and easy menu management.",
+  "requestFramePermissions": ["geolocation"]
+}

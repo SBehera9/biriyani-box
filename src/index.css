@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Anton", sans-serif;
+  --font-sans: "Space Grotesk", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-[#F9F7F2] text-[#1A1A1A];
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee 20s linear infinite;
+}
+
+.brutalist-border {
+  border: 2px solid #1A1A1A;
+  box-shadow: 4px 4px 0px #1A1A1A;
+}
+
+.brutalist-border-hover:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #1A1A1A;
+}
+
+.brutalist-card {
+  @apply bg-white border-2 border-[#1A1A1A] shadow-[4px_4px_0px_#1A1A1A] transition-all duration-200;
+}
+
+.brutalist-card:hover {
+  @apply shadow-[8px_8px_0px_#1A1A1A] -translate-x-1 -translate-y-1;
+}
+
+.neon-orange {
+  color: #FF4D00;
+}
+
+.bg-neon-orange {
+  background-color: #FF4D00;
+}
