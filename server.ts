@@ -13,7 +13,7 @@ async function startServer() {
 
   app.use(express.json());
 
-  // API Routes - Now using static data
+  // API Routes
   app.get("/api/categories", (req, res) => {
     res.json(categories);
   });
@@ -22,29 +22,19 @@ async function startServer() {
     res.json(menuItems);
   });
 
-  // Health check endpoint
   app.get("/api/health", (req, res) => {
     res.json({ status: "ok", mode: "static-data" });
   });
 
-  // Serve static files in production
-  if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "dist")));
-    app.get("*", (req, res) => {
-      res.sendFile(path.join(__dirname, "dist", "index.html"));
-    });
-  } else {
-    // Vite middleware for development
-    const vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: "spa",
-    });
-    app.use(vite.middlewares);
-  }
+  // Vite middleware for development
+  const vite = await createViteServer({
+    server: { middlewareMode: true },
+    appType: "spa",
+  });
+  app.use(vite.middlewares);
 
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on http://localhost:${PORT}`);
-    console.log(`Using static data with ${menuItems.length} items`);
   });
 }
 
